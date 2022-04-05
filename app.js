@@ -9,7 +9,7 @@ const fs = require('fs')
 const PORT = 8000
 
 app.set('view engine', 'pug')
-app.use('/static', express('public'))
+app.use('/static', express.static('public'))
 app.use(express.urlencoded({extended:false}))
 
 // http://localhost:8000
