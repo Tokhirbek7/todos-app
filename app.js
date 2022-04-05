@@ -64,6 +64,49 @@ if( formData.todo.trim() == '' ){
 }
 
 })
+
+app.get('/:id/delete', (req, res)=>{
+    const id = req.params.id
+
+    fs.readFile('./data/todos.json', (err, data)=>{
+        if(err) throw err
+
+        const todo = JSON.parse(data)
+
+        const filteredTodos = todo.filter(todo => todos.id!=id)
+        
+        fs.writeFile('./data/todos.json', JSON.stringify(filteredTodos), (err)=>{
+            if (err) throw err
+
+            res.render('home', { todos: filteredTodos, deletes: true})
+        })
+    
+    })
+})
+
+app.get('/:id/update', (req, res)=>{
+    const id = req.params.id
+
+    fs.readFile('./data/todos.json', (err, data)=>{
+     if(err) throw err
+     
+     
+     const todos = JSON.parse(data)
+     const todo = todos.filter(todo => todo.id == id)[0]
+     const todoIdx = todos.indexOf(todo)
+     const spliceTodo = todos.splice(todoIdx, 1)[0]
+     spliceTodo.done = true
+     note.push(spliceTodo)
+
+     fs.writeFile('./data/todos.json', JSON.stringify(todos), (err)=>{
+         if(err) throw err
+
+         res.render('home', {todos: todos})
+     })
+    })
+    
+})
+
 app.listen(PORT, (err)=>{
     if(err) throw err
 
