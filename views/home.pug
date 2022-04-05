@@ -12,18 +12,18 @@ block content
      p.success Deleted
 
    form.form(action ='/add' method ='POST')
-   input.input(type='text' placeholder ='add your first project description...' name='todo')
+   input.input(type='text' placeholder ='add Customer' name='customer')
    button.btn Add
 
 
-      div.todos
-        if todos.length
-          each todo in todos
-            p.todo
-              if todo.done
-                a.done(href=`/${todo.id}/update`) #{ todo.description }
+      div.customers
+        if customers.length
+          each customer in customers
+            p.customer
+              if customer.done
+                a.done(href=`/${customer.id}/update`) #{ customer.description }
               else
-                a.undone(href=`/${todo.id}/update`) #{ todo.description }  
-              a.delete(href=`/${todo.id}/delete`) Delete
+                a.undone(href=`/${customer.id}/update`) #{ customer.description }  
+              a.delete(href=`/${customer.id}/delete`) Delete
         else 
-          p.todo No available todo
+          p.customer No available customer

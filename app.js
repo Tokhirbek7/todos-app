@@ -14,11 +14,11 @@ app.use(express.urlencoded({extended:false}))
 
 // http://localhost:8000
 app.get('/', (req, res) =>{
-    fs.readFile('./data/todos.json', (err, data) => {
+    fs.readFile('./data/customers.json', (err, data) => {
         if(err) throw err
 
-        const todo = JSON.parse(data)
-        res.render('home', { todos: todo })
+        const customer = JSON.parse(data)
+        res.render('home', { customers: customer })
         
     })    
 
@@ -28,35 +28,35 @@ app.post('/add', (req, res) =>{
     const formData = req.body
 
 
-if( formData.todo.trim() == '' ){
-    fs.readFile('./data/todos.json', (err, data)=>{
+if( formData.customer.trim() == '' ){
+    fs.readFile('./data/customers.json', (err, data)=>{
         if(err) throw err
 
-        const todos = JSON.parse(data)
-        res.render('home', { error:true, todo: todos })
+        const customers = JSON.parse(data)
+        res.render('home', { error:true, customer: customers })
     })  
 }else{
-    fs.readFile('./data/todos.json', (err, data) => {
+    fs.readFile('./data/customers.json', (err, data) => {
         if(err) throw err
 
-        const todos = JSON.parse(data)
+        const customers = JSON.parse(data)
 
-        const todo = {
+        const customer = {
             id: id(),
-            description: formData.todo,
+            description: formData.customer,
             done:false
         }
 
-        todos.push(todo)
+        customers.push(customer)
 
-        fs.writeFile('./data/todos.json',JSON.stringify(todos), (err) =>{
+        fs.writeFile('./data/customers.json',JSON.stringify(customers), (err) =>{
             if (err) throw err
             
-            fs.readFile('./data/todos.json', (err, data)=>{
+            fs.readFile('./data/customers.json', (err, data)=>{
                 if(err) throw err
 
-                const todos = JSON.parse(data)
-                res.render('home', { success:true, todo: todos })
+                const customers = JSON.parse(data)
+                res.render('home', { success:true, customer: customers })
             })  
             
         } )
@@ -65,20 +65,21 @@ if( formData.todo.trim() == '' ){
 
 })
 
+
 app.get('/:id/delete', (req, res)=>{
     const id = req.params.id
 
-    fs.readFile('./data/todos.json', (err, data)=>{
+    fs.readFile('./data/customers.json', (err, data)=>{
         if(err) throw err
 
-        const todo = JSON.parse(data)
+        const customer = JSON.parse(data)
 
-        const filteredTodos = todo.filter(todo => todos.id!=id)
+        const filteredcustomers = customer.filter(customer => customers.id!=id)
         
-        fs.writeFile('./data/todos.json', JSON.stringify(filteredTodos), (err)=>{
+        fs.writeFile('./data/customers.json', JSON.stringify(filteredcustomers), (err)=>{
             if (err) throw err
 
-            res.render('home', { todos: filteredTodos, deletes: true})
+            res.render('home', { customers: filteredcustomers, deletes: true})
         })
     
     })
@@ -87,21 +88,21 @@ app.get('/:id/delete', (req, res)=>{
 app.get('/:id/update', (req, res)=>{
     const id = req.params.id
 
-    fs.readFile('./data/todos.json', (err, data)=>{
+    fs.readFile('./data/customers.json', (err, data)=>{
      if(err) throw err
      
      
-     const todos = JSON.parse(data)
-     const todo = todos.filter(todo => todo.id == id)[0]
-     const todoIdx = todos.indexOf(todo)
-     const spliceTodo = todos.splice(todoIdx, 1)[0]
-     spliceTodo.done = true
-     note.push(spliceTodo)
+     const customers = JSON.parse(data)
+     const customer = customers.filter(customer => customer.id == id)[0]
+     const customerIdx = customers.indexOf(customer)
+     const splicecustomer = customers.splice(customerIdx, 1)[0]
+     splicecustomer.done = true
+     note.push(splicecustomer)
 
-     fs.writeFile('./data/todos.json', JSON.stringify(todos), (err)=>{
+     fs.writeFile('./data/customers.json', JSON.stringify(customers), (err)=>{
          if(err) throw err
 
-         res.render('home', {todos: todos})
+         res.render('home', {customers: customers})
      })
     })
     

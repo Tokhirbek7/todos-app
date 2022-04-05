@@ -43,13 +43,13 @@
     font: white;
 }
 
-.todos{
+.customers{
     margin-top: 20px;
     border: 1px solid #ccc;
     padding: 10px;
 }
 
-.todo{
+.customer{
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -58,11 +58,11 @@
     border-bottom: 1px dotted #ccc
 }
 
-.todo:last-child{
+.customer:last-child{
     border-bottom:none  
 }
 
-.todo:hover{
+.customer:hover{
     background-color: grey;
 }
 
