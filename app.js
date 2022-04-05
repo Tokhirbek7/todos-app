@@ -26,7 +26,7 @@ app.get('/', (req, res) =>{
 
 app.post('/add', (req, res) =>{ 
     const formData = req.body
-})
+
 
 if( formData.todo.trim() == '' ){
     fs.readFile('./data/todos.json', (err, data)=>{
@@ -63,6 +63,7 @@ if( formData.todo.trim() == '' ){
     })
 }
 
+})
 app.listen(PORT, (err)=>{
     if(err) throw err
 
