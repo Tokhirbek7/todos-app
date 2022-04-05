@@ -7,7 +7,7 @@ This application allows users to do CRUD(Create, Read, Update, Delete) operation
 1. Download the souce code
 
 ```
-git clone[url to the github repo]
+git clone https://github.com/Tokhirbek7/todos-app.git
 ```
 or just download the zip file
 
@@ -26,4 +26,4 @@ node app
 - pug
 
 #### Link to the github repository
- [github repo url]
+ https://github.com/Tokhirbek7/todos-app.git
