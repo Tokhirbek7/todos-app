@@ -27,3 +27,6 @@ node app
 
 #### Link to the github repository
  https://github.com/Tokhirbek7/todos-app.git
+
+ #### Link to the Glitch
+ https://northern-mahogany-manatee.glitch.me
